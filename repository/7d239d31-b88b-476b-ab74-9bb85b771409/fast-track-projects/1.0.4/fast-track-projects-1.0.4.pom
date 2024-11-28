@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>7d239d31-b88b-476b-ab74-9bb85b771409</groupId>
+  <artifactId>fast-track-projects</artifactId>
+  <version>1.0.4</version>
+  <name>Fast Track Projects</name>
+  <properties>
+    <classifier>raml</classifier>
+    <main>fast-track-projects.raml</main>
+    <status>published</status>
+    <originalFormatVersion>1.0</originalFormatVersion>
+    <apiVersion>v1</apiVersion>
+    <projectId>34311a76-5b7b-4a8d-b49a-6d82bd5928d9</projectId>
+    <branchId>master</branchId>
+    <commitId>95d3a7b2fdc8f05c8ffafc7c499be237360d4c0c</commitId>
+    <keywords/>
+    <type>rest-api</type>
+    <mainFile>fast-track-projects.raml</mainFile>
+  </properties>
+  <repositories>
+    <repository>
+      <id>anypoint-exchange</id>
+      <url>https://maven.anypoint.mulesoft.com/api/v3/maven</url>
+    </repository>
+  </repositories>
+</project>

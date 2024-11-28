@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mule xmlns:file="http://www.mulesoft.org/schema/mule/file" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/mule-apikit" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd http://www.mulesoft.org/schema/mule/mule-apikit http://www.mulesoft.org/schema/mule/mule-apikit/current/mule-apikit.xsd http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd 
+http://www.mulesoft.org/schema/mule/file http://www.mulesoft.org/schema/mule/file/current/mule-file.xsd">
+    <apikit:config name="fast-track-projects-config" api="resource::7d239d31-b88b-476b-ab74-9bb85b771409:fast-track-projects:1.0.4:raml:zip:fast-track-projects.raml" outboundHeadersMapName="outboundHeaders" httpStatusVarName="httpStatus" />
+    <flow name="fast-track-projects-main">
+        <http:listener path="/api/*" config-ref="localSystemLayer">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:router config-ref="fast-track-projects-config" />
+        <error-handler>
+            <on-error-propagate type="APIKIT:BAD_REQUEST">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Bad request"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">400</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_FOUND">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Resource not found"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">404</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:METHOD_NOT_ALLOWED">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Method not allowed"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">405</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_ACCEPTABLE">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Not acceptable"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">406</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:UNSUPPORTED_MEDIA_TYPE">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Unsupported media type"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">415</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+            <on-error-propagate type="APIKIT:NOT_IMPLEMENTED">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Not Implemented"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">501</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+        </error-handler>
+    </flow>
+    <flow name="fast-track-projects-console">
+        <http:listener path="/console/*" config-ref="localSystemLayer">
+            <http:response statusCode="#[vars.httpStatus default 200]">
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:response>
+            <http:error-response statusCode="#[vars.httpStatus default 500]">
+                <http:body><![CDATA[#[payload]]]></http:body>
+                <http:headers><![CDATA[#[vars.outboundHeaders default {}]]]></http:headers>
+            </http:error-response>
+        </http:listener>
+        <apikit:console config-ref="fast-track-projects-config" />
+        <error-handler>
+            <on-error-propagate type="APIKIT:NOT_FOUND">
+                <ee:transform doc:name="Transform Message">
+                    <ee:message>
+                        <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{message: "Resource not found"}]]></ee:set-payload>
+                    </ee:message>
+                    <ee:variables>
+                        <ee:set-variable variableName="httpStatus">404</ee:set-variable>
+                    </ee:variables>
+                </ee:transform>
+            </on-error-propagate>
+        </error-handler>
+    </flow>
+    <flow name="put:\account\(accountId):application\json:fast-track-projects-config">
+        <ee:transform doc:name="Transform Message">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <ee:transform doc:name="Transform Message">
+            <ee:message>
+                <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+{
+  accountId: "12345a",
+  accountName: "Teste",
+  industry: "Retail",
+  "type": "Customer",
+  owner: {
+    userId: "1234a",
+    firstName: "Rui",
+    lastName: "Guerra",
+    email: "teste@teste.pt"
+  },
+  billingAddress: {
+    street: "1234 Innovation Rd",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94105a",
+    country: "Portugal"
+  },
+  shippingAddress: {
+    street: "1234 Innovation Rd",
+    city: "San Francisco",
+    state: "CA",
+    zip: "94105a",
+    country: "Portugal"
+  },
+  contactDetails: {
+    phone: "9111111111",
+    fax: "922222222",
+    website: "teste.pt"
+  },
+  annualRevenue: 200000,
+  numberOfEmployees: 1000,
+  status: "Active",
+  createdDate: "26/11/2024",
+  lastModified: "26/11/2024"
+} as Object {encoding: "UTF-8", mediaType: "application/json"}]]></ee:set-payload>
+            </ee:message>
+        </ee:transform>
+    </flow>
+    <flow name="delete:\account\(accountId):fast-track-projects-config">
+        <ee:transform doc:name="Transform Message">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <logger level="INFO" message="delete:\account\(accountId):fast-track-projects-config" />
+    </flow>
+    <flow name="delete:\account\(accountId)\cases:fast-track-projects-config">
+        <ee:transform doc:name="Transform Message">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+        <logger level="INFO" message="delete:\account\(accountId)\cases:fast-track-projects-config" />
+    </flow>
+    <flow name="get:\account\(accountId):fast-track-projects-config" doc:id="6d06eaf9-59fc-4f12-9c8f-ab4fb11f48a9">
+		<set-variable value="#[attributes.uriParams.'accountId' default 0]" doc:name="Set AccountId" doc:id="bc32bc89-e297-4cbd-b358-41a8df8a65f9" variableName="accountId" />
+		<flow-ref doc:name="Get Accounts" doc:id="dea2df30-0049-410e-a064-08999b80a640" name="get:\accounts:fast-track-projects-config" />
+		<logger level="INFO" doc:name="Logger" doc:id="501de586-01b3-4107-a959-ff2a47203840" />
+		<ee:transform doc:name="Filter Accounts" doc:id="ab8816a2-f7a0-4ccf-abcd-5cb965cf52a0">
+			<ee:message>
+				<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload.accounts filter ((account) -> account.accountId == vars.accountId)]]></ee:set-payload>
+			</ee:message>
+		</ee:transform>
+		<logger level="INFO" doc:name="Logger1" doc:id="d2756de9-8593-45dc-a473-7f931cf0342c" />
+    </flow>
+    <flow name="get:\account\(accountId)\cases:fast-track-projects-config">
+		<set-variable value="#[attributes.uriParams.'accountId' default 0]" doc:name="Set AccountId" doc:id="97ef4f78-a830-4b2f-8ffb-02df2d1e0409" variableName="accountId" />
+		<file:read doc:name="Get All Cases" doc:id="be4182ae-16f5-4e7d-8e54-12a968099998" config-ref="resourcesDir" path="cases.json" outputMimeType="application/json"/>
+		<ee:transform doc:name="Filter Cases by AccountId" doc:id="5641e62b-a3b2-404f-838f-f6ffcf84ca01">
+					<ee:message>
+						<ee:set-payload><![CDATA[%dw 2.0
+output application/json
+---
+payload.cases filter ((item) -> item.accountId == vars.accountId)
+]]></ee:set-payload>
+					</ee:message>
+				</ee:transform>
+    </flow>
+    <flow name="get:\accounts:fast-track-projects-config" doc:id="f0bcac5a-65c9-4c7a-acbf-46084b10fd24">
+        <file:read doc:name="Get Accounts " doc:id="0eaf8153-5c78-4a06-b93e-93aeaf3c8479" path="accounts.json" config-ref="resourcesDir" outputMimeType="application/json"/>
+		<logger level="INFO" doc:name="Logger" doc:id="2406fe79-4a35-47a5-9a6b-b85e29a3d423" />
+    </flow>
+    <flow name="post:\account\(accountId)\cases:application\json:fast-track-projects-config">
+		<logger level="INFO" doc:name="Logger" doc:id="76ce9d2c-56ce-4fff-a0f6-c4a6acda654d" />
+		<ee:transform doc:name="Transform Message">
+            <ee:variables>
+                <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            </ee:variables>
+        </ee:transform>
+		<logger level="INFO" message="post:\account\(accountId)\cases:application\json:fast-track-projects-config" />
+    </flow>
+<flow name="post:\account\(accountId):application\json:fast-track-projects-config">
+    <ee:transform doc:name="Transform Payload">
+        <ee:variables>
+            <ee:set-variable variableName="accountId">attributes.uriParams.'accountId'</ee:set-variable>
+            <ee:set-variable variableName="newAccount">attributes.body</ee:set-variable>
+        </ee:variables>
+    </ee:transform>
+		<set-variable value="#[payload]" doc:name="Set accountToAdd" doc:id="e5c7feab-78a4-404a-8ba7-330dab811244" variableName="accountToAdd"/>
+		<flow-ref name="get:\accounts:fast-track-projects-config"/>
+    
+    <ee:transform doc:name="Prepare New Account List">
+        <ee:message>
+            <ee:set-payload><![CDATA[%dw 2.0
+output application/json
+var existingAccounts = payload.accounts
+var newAccount = vars.accountToAdd
+var accountsBeforeOrder = existingAccounts ++ [newAccount]
+var accountsAfterOrder = accountsBeforeOrder orderBy ($.accountId)
+---
+{
+    accounts: accountsAfterOrder
+}]]></ee:set-payload>
+        </ee:message>
+    </ee:transform>
+		<file:write doc:name="Write Updated Accounts" 
+               config-ref="resourcesDir" 
+               path="accounts.json"/>
+    
+    <logger level="INFO" message="Account created: #[vars.accountId]"/>
+</flow>
+</mule>

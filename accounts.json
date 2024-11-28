@@ -1,0 +1,184 @@
+{
+  "accounts": [
+    {
+      "accountId": "0",
+      "accountName": "TESTE POST",
+      "industry": "dasd",
+      "type": "asd",
+      "owner": {
+        "userId": "asd",
+        "firstName": "ddddd",
+        "lastName": "ddddwfw",
+        "email": "alice.dsfsdfsdf@example.com"
+      },
+      "billingAddress": {
+        "street": "1234 fdgdfg Rd",
+        "city": "San dfgdfgdf",
+        "state": "fgggfdg",
+        "zip": "123123123",
+        "country": "234234234"
+      },
+      "shippingAddress": {
+        "street": "5678 ergergerg St",
+        "city": "San ergerg",
+        "state": "asdasd",
+        "zip": "rgdrg",
+        "country": "wadawd"
+      },
+      "contactDetails": {
+        "phone": "+1-erg-555-1234",
+        "fax": "+1-800-hererhertgert-5678",
+        "website": "https:qweqweqwators.com"
+      },
+      "annualRevenue": 2222222,
+      "numberOfEmployees": 333333,
+      "status": "dgdrggrd",
+      "createdDate": "22",
+      "lastModified": "233"
+    },
+    {
+      "accountId": "A11223",
+      "accountName": "Retail Pro Stores",
+      "industry": "Retail",
+      "type": "Customer",
+      "owner": {
+        "userId": "U5678",
+        "firstName": "Carla",
+        "lastName": "Diaz",
+        "email": "carla.diaz@example.com"
+      },
+      "billingAddress": {
+        "street": "200 Main St",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60601",
+        "country": "USA"
+      },
+      "shippingAddress": {
+        "street": "345 Market Ave",
+        "city": "Chicago",
+        "state": "IL",
+        "zip": "60602",
+        "country": "USA"
+      },
+      "contactDetails": {
+        "phone": "+1-800-555-4321",
+        "fax": "+1-800-555-8765",
+        "website": "https://www.retailpro.com"
+      },
+      "annualRevenue": 300000000,
+      "numberOfEmployees": 10000,
+      "status": "Inactive",
+      "createdDate": "2022-03-01T09:00:00Z",
+      "lastModified": "2024-06-05T16:30:00Z"
+    },
+    {
+      "accountId": "A12345",
+      "accountName": "Tech Innovators Inc.",
+      "industry": "Technology",
+      "type": "Customer",
+      "owner": {
+        "userId": "U9876",
+        "firstName": "Alice",
+        "lastName": "Johnson",
+        "email": "alice.johnson@example.com"
+      },
+      "billingAddress": {
+        "street": "1234 Innovation Rd",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94105",
+        "country": "USA"
+      },
+      "shippingAddress": {
+        "street": "5678 Commerce St",
+        "city": "San Francisco",
+        "state": "CA",
+        "zip": "94107",
+        "country": "USA"
+      },
+      "contactDetails": {
+        "phone": "+1-800-555-1234",
+        "fax": "+1-800-555-5678",
+        "website": "https://www.techinnovators.com"
+      },
+      "annualRevenue": 100000000,
+      "numberOfEmployees": 5000,
+      "status": "Active",
+      "createdDate": "2024-01-15T08:30:00Z",
+      "lastModified": "2024-11-20T10:15:00Z"
+    },
+    {
+      "accountId": "A44556",
+      "accountName": "Smart Energy Solutions",
+      "industry": "Energy",
+      "type": "Partner",
+      "owner": {
+        "userId": "U4321",
+        "firstName": "David",
+        "lastName": "Martinez",
+        "email": "david.martinez@example.com"
+      },
+      "billingAddress": {
+        "street": "789 Solar St",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85001",
+        "country": "USA"
+      },
+      "shippingAddress": {
+        "street": "123 Energy Dr",
+        "city": "Phoenix",
+        "state": "AZ",
+        "zip": "85002",
+        "country": "USA"
+      },
+      "contactDetails": {
+        "phone": "+1-800-555-2468",
+        "fax": "+1-800-555-8642",
+        "website": "https://www.smartenergy.com"
+      },
+      "annualRevenue": 75000000,
+      "numberOfEmployees": 800,
+      "status": "Active",
+      "createdDate": "2024-07-01T10:00:00Z",
+      "lastModified": "2024-11-22T12:45:00Z"
+    },
+    {
+      "accountId": "A67890",
+      "accountName": "Green Earth Solutions",
+      "industry": "Environmental",
+      "type": "Partner",
+      "owner": {
+        "userId": "U1234",
+        "firstName": "Bob",
+        "lastName": "Smith",
+        "email": "bob.smith@example.com"
+      },
+      "billingAddress": {
+        "street": "789 Greenway Blvd",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "73301",
+        "country": "USA"
+      },
+      "shippingAddress": {
+        "street": "1012 Oakwood St",
+        "city": "Austin",
+        "state": "TX",
+        "zip": "73302",
+        "country": "USA"
+      },
+      "contactDetails": {
+        "phone": "+1-800-555-6789",
+        "fax": "+1-800-555-9876",
+        "website": "https://www.greenearthsolutions.com"
+      },
+      "annualRevenue": 50000000,
+      "numberOfEmployees": 200,
+      "status": "Active",
+      "createdDate": "2023-05-10T14:00:00Z",
+      "lastModified": "2024-11-10T11:20:00Z"
+    }
+  ]
+}
