@@ -1,0 +1,6 @@
+http:
+  port: "8081"
+
+files:
+  resourcesDir: "C:/Users/ruguerra/AnypointStudio/studio-workspace/system-fast/src/main/resources/"
+

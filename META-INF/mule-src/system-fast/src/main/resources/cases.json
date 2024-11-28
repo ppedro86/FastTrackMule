@@ -1,0 +1,105 @@
+{
+    "cases": [
+        {
+            "caseId": "C001",
+            "accountId": "A11223",
+            "caseSubject": "Network Downtime",
+            "description": "The account experienced a major network downtime affecting all users in the office.",
+            "status": "Open",
+            "priority": "High",
+            "createdDate": "2024-11-15T10:00:00Z",
+            "lastModified": "2024-11-15T14:00:00Z",
+            "assignedTo": {
+                "userId": "U9876",
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "email": "alice.johnson@example.com"
+            },
+            "escalationLevel": 1,
+            "comments": [
+                {
+                    "commentId": "C001-001",
+                    "author": "Alice Johnson",
+                    "text": "The issue was identified and is being investigated by our network team."
+                },
+                {
+                    "commentId": "C001-002",
+                    "author": "Bob Smith",
+                    "text": "Confirmed the downtime was related to a recent software update."
+                }
+            ]
+        },
+        {
+            "caseId": "C002",
+            "accountId": "A12345",
+            "caseSubject": "Billing Issue",
+            "description": "Customer has been charged incorrectly for services in the last month.",
+            "status": "Closed",
+            "priority": "Medium",
+            "createdDate": "2024-11-05T12:30:00Z",
+            "lastModified": "2024-11-10T10:00:00Z",
+            "assignedTo": {
+                "userId": "U9876",
+                "firstName": "Alice",
+                "lastName": "Johnson",
+                "email": "alice.johnson@example.com"
+            },
+            "escalationLevel": 0,
+            "comments": [
+                {
+                    "commentId": "C002-001",
+                    "author": "Alice Johnson",
+                    "text": "The billing discrepancy has been corrected, and the customer has been refunded."
+                }
+            ]
+        },
+        {
+            "caseId": "C003",
+            "accountId": "A67890",
+            "caseSubject": "Product Warranty Claim",
+            "description": "The customer is claiming a warranty replacement for a defective product.",
+            "status": "In Progress",
+            "priority": "High",
+            "createdDate": "2024-11-18T09:45:00Z",
+            "lastModified": "2024-11-20T11:30:00Z",
+            "assignedTo": {
+                "userId": "U1234",
+                "firstName": "Bob",
+                "lastName": "Smith",
+                "email": "bob.smith@example.com"
+            },
+            "escalationLevel": 1,
+            "comments": [
+                {
+                    "commentId": "C003-001",
+                    "author": "Bob Smith",
+                    "text": "The product has been returned and is under examination by the quality team."
+                }
+            ]
+        },
+        {
+            "caseId": "C004",
+            "accountId": "A67890",
+            "caseSubject": "System Outage",
+            "description": "Customer reports a system outage impacting their production environment.",
+            "status": "Open",
+            "priority": "Critical",
+            "createdDate": "2024-11-20T14:00:00Z",
+            "lastModified": "2024-11-20T16:00:00Z",
+            "assignedTo": {
+                "userId": "U1234",
+                "firstName": "Bob",
+                "lastName": "Smith",
+                "email": "bob.smith@example.com"
+            },
+            "escalationLevel": 2,
+            "comments": [
+                {
+                    "commentId": "C004-001",
+                    "author": "Bob Smith",
+                    "text": "The issue is currently being worked on by our technical support team."
+                }
+            ]
+        }
+    ]
+}
